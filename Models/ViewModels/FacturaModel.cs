@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ServicioCar.Models
+namespace Carcenter.Models.ViewModels
 {
-    public class Factura
+    public class FacturaModel
     {
         [Required]
         public int id { get; set; }
@@ -15,8 +15,8 @@ namespace ServicioCar.Models
         [Required]
         public Decimal total { get; set; }
         [Required]
-        public Cliente cliente { get; set; }
+        public ClienteModel cliente { get; set; }
         [Required]
-        public Mecanico mecanico { get; set; }
+        public MecanicoModel mecanico { get; set; }
     }
 }

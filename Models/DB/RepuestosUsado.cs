@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace ServicioCar.Models.DB
+namespace Carcenter.Models.DB
 {
-    public partial class RepuestosUsadoDb
+    public partial class RepuestosUsado
     {
-        public RepuestosUsadoDb()
+        public RepuestosUsado()
         {
-            Mantenimientos = new HashSet<MantenimientoDb>();
+            Mantenimientos = new HashSet<Mantenimiento>();
         }
 
         public int Id { get; set; }
@@ -17,6 +17,6 @@ namespace ServicioCar.Models.DB
         public int NumeroUnidades { get; set; }
         public decimal Descuento { get; set; }
 
-        public virtual ICollection<MantenimientoDb> Mantenimientos { get; set; }
+        public virtual ICollection<Mantenimiento> Mantenimientos { get; set; }
     }
 }

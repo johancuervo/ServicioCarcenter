@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ServicioCar.Models
+namespace Carcenter.Models.ViewModels
 {
-    public class Persona
+    public class PersonaModel
     {
         [Required]
         public int id { get; set; }
@@ -34,7 +34,7 @@ namespace ServicioCar.Models
         [StringLength(50)]
         public String correo { get; set; }
 
-        public Persona(int id, string tipoDocumento, int documento, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, int celular, string direccion, string correo)
+        public PersonaModel(int id, string tipoDocumento, int documento, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, int celular, string direccion, string correo)
         {
             this.id = id;
             this.tipoDocumento = tipoDocumento;
@@ -48,9 +48,10 @@ namespace ServicioCar.Models
             this.correo = correo;
         }
 
-        public Persona()
+        public PersonaModel()
         {
 
         }
-    }
+    
+}
 }

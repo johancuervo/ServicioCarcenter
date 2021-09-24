@@ -1,11 +1,11 @@
 {
-  "name": "serviciocar",
+  "name": "carcenter",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:ssr": "ng run ServicioCar:server:dev",
+    "build:ssr": "ng run Carcenter:server:dev",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

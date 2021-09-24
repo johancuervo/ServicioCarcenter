@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace ServicioCar.Models.DB
+namespace Carcenter.Models.DB
 {
-    public partial class MecanicoDb
+    public partial class Cliente
     {
-        public MecanicoDb()
+        public Cliente()
         {
-            Facturas = new HashSet<FacturaDb>();
+            Facturas = new HashSet<Factura>();
         }
 
         public int Id { get; set; }
@@ -22,8 +22,7 @@ namespace ServicioCar.Models.DB
         public int Celular { get; set; }
         public string Direccion { get; set; }
         public string Correo { get; set; }
-        public string Estado { get; set; }
 
-        public virtual ICollection<FacturaDb> Facturas { get; set; }
+        public virtual ICollection<Factura> Facturas { get; set; }
     }
 }

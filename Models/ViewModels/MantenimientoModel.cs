@@ -4,32 +4,30 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ServicioCar.Models
+namespace Carcenter.Models.ViewModels
 {
-    public class Mantenimiento
+    public class MantenimientoModel
     {
-     
         [Required]
         public int id { get; set; }
         [Required]
         public String estado { get; set; }
         [Required]
-        public RepuestosUsados repuestosUsados { get; set; }
+        public RepuestosUsadosModel repuestosUsados { get; set; }
         [Required]
-        public Servicio servicio { get; set; }
+        public ServicioModel servicio { get; set; }
 
-        public Mantenimiento()
+        public MantenimientoModel()
         {
 
         }
 
-        public Mantenimiento(int id, string estado, RepuestosUsados repuestosUsados, Servicio servicio)
+        public MantenimientoModel(int id, string estado, RepuestosUsadosModel repuestosUsados, ServicioModel servicio)
         {
             this.id = id;
             this.estado = estado;
             this.repuestosUsados = repuestosUsados;
             this.servicio = servicio;
         }
-
     }
 }

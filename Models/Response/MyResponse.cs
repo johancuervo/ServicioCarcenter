@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ServicioCar.Models.Response
+namespace Carcenter.Models.Response
 {
     public class MyResponse
     {
@@ -11,6 +11,5 @@ namespace ServicioCar.Models.Response
         public String Message { get; set; }
 
         public object Data { get; set; }
-
     }
 }

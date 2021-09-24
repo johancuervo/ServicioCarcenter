@@ -4,12 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ServicioCar.Models
+namespace Carcenter.Models.ViewModels
 {
-    
-    public class RepuestosUsados
+    public class RepuestosUsadosModel
     {
-
         [Required]
         public int id { get; set; }
         [Required]
@@ -18,20 +16,17 @@ namespace ServicioCar.Models
         public int numeroUnidades { get; set; }
         [Required]
         public Decimal descuento { get; set; }
-        public RepuestosUsados()
+        public RepuestosUsadosModel()
         {
 
         }
 
-        public RepuestosUsados(int id, decimal precioUnidad, int numeroUnidades, decimal descuento)
+        public RepuestosUsadosModel(int id, decimal precioUnidad, int numeroUnidades, decimal descuento)
         {
             this.id = id;
             this.precioUnidad = precioUnidad;
             this.numeroUnidades = numeroUnidades;
             this.descuento = descuento;
         }
-
-
-
     }
 }

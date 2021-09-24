@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ServicioCar": {
+    "Carcenter": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -50,18 +50,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ServicioCar:build"
+            "browserTarget": "Carcenter:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ServicioCar:build:production"
+              "browserTarget": "Carcenter:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ServicioCar:build"
+            "browserTarget": "Carcenter:build"
           }
         },
         "test": {
@@ -111,7 +111,7 @@
         }
       }
     },
-    "ServicioCar-e2e": {
+    "Carcenter-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -119,7 +119,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ServicioCar:serve"
+            "devServerTarget": "Carcenter:serve"
           }
         },
         "lint": {
@@ -132,5 +132,5 @@
       }
     }
   },
-  "defaultProject": "ServicioCar"
+  "defaultProject": "Carcenter"
 }
