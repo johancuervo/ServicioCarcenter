@@ -9,37 +9,49 @@ using System.Threading.Tasks;
 
 namespace Carcenter.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]")]              
     public class ClientesController : Controller
     {
-        [HttpGet("[action]")]
+        [HttpGet]
         public IEnumerable<ClienteModel> Index()
         {
+            List<ClienteModel> lClientes;
+                using (var db = new CarcenterContext())
+                {
+                   lClientes = (from d in db.Clientes
+                                                    select new ClienteModel
+                                                    {
+                                                        id = d.Id,
+                                                        tipoDocumento = d.TipoDocumento,
+                                                        documento = d.Documento,
+                                                        primerNombre = d.PrimerNombre,
+                                                        segundoNombre = d.SegundoNombre,
+                                                        primerApellido = d.PrimerApellido,
+                                                        segundoApellido = d.SegundoApellido,
+                                                        celular = d.Celular,
+                                                        direccion = d.Direccion,
+                                                        correo = d.Correo
 
 
-            using (var db = new Models.DB.CarcenterContext())
-            {
-                List<ClienteModel> lClientes = (from d in db.Clientes
-                                           select new ClienteModel
-                                           {
-                                               id = d.Id,
-                                               tipoDocumento=d.TipoDocumento,
-                                               documento=d.Documento,
-                                               primerNombre = d.PrimerNombre,
-                                               segundoNombre=d.SegundoNombre,
-                                               primerApellido = d.PrimerApellido,
-                                               segundoApellido= d.SegundoApellido,
-                                               celular=d.Celular,
-                                               direccion=d.Direccion,
-                                               correo=d.Correo
+                                                    }).ToList();
+                    return lClientes;
 
-                                               
-                                           }).ToList();
-                return lClientes;
-            }
-
+                }
+         
+  
         }
-
+        //Buscar por id:
+        [HttpGet("{idGetUser}")]
+        public async Task<ActionResult<Cliente>> GetCLiente(int idGetUser)
+        {
+            CarcenterContext context = new CarcenterContext();
+            var clienteItem = await context.Clientes.FindAsync(idGetUser);
+            if (clienteItem == null)
+            {
+                return NotFound();
+            }
+            return clienteItem;
+        }
 
         //Registro Cliente
         [HttpPost]
@@ -55,7 +67,13 @@ namespace Carcenter.Controllers
                     using (CarcenterContext db = new CarcenterContext())
                     {
                         var clientedb = new Cliente();
-                        clientedb.Id = cliente.id;
+                        var ultimoId = db.Clientes.Max(x => x.Id as int?) ?? 0;
+
+
+                        clientedb.Id = ultimoId+1;
+
+
+                        //clientedb.Id = cliente.id;
                         clientedb.TipoDocumento = cliente.tipoDocumento;
                         clientedb.Documento = cliente.documento;
                         clientedb.PrimerNombre = cliente.primerNombre;
@@ -81,74 +99,63 @@ namespace Carcenter.Controllers
             }
             return oR;
         }
+        
+        //Editar
 
-        [HttpPut("[action]")]
-        public ActionResult Edit(int Id)
+
+        [HttpPut("{clienteId}")]
+        public MyResponse Edit(int clienteId, [FromBody] ClienteModel cliente)
+        {
+            MyResponse oR = new MyResponse();
+            try
             {
-                ClienteModel cliente = new ClienteModel();
                 using (CarcenterContext db = new CarcenterContext())
                 {
-                    var clientedb = db.Clientes.Find(Id);
-                    cliente.id = Id;
-                    cliente.tipoDocumento = clientedb.TipoDocumento;
-                    cliente.documento = clientedb.Documento;
-                    cliente.primerNombre = clientedb.PrimerNombre;
-                    cliente.segundoNombre = clientedb.SegundoNombre;
-                    cliente.primerApellido = clientedb.PrimerApellido;
-                    cliente.segundoApellido = clientedb.SegundoApellido;
-                    cliente.celular = clientedb.Celular;
-                    cliente.direccion = clientedb.Direccion;
-                    cliente.correo = clientedb.Correo;
-                }
-
-                return View(cliente);
-            }
-
-            [HttpPut("[action]")]
-            public ActionResult Edit(ClienteModel cliente)
-            {
-                try
-                {
-
-                    if (ModelState.IsValid)
-                    {
-                        using (CarcenterContext db = new CarcenterContext())
-                        {
-                            var clientedb = db.Clientes.Find(cliente.id);
-                            clientedb.Id = cliente.id;
-                            clientedb.TipoDocumento = cliente.tipoDocumento;
-                            clientedb.Documento = cliente.documento;
-                            clientedb.PrimerNombre = cliente.primerNombre;
-                            clientedb.SegundoNombre = cliente.segundoNombre;
-                            clientedb.PrimerApellido = cliente.primerApellido;
-                            clientedb.Celular = cliente.celular;
-                            clientedb.Direccion = cliente.direccion;
-                            clientedb.Correo = cliente.correo;
-                            db.Entry(clientedb).State = (Microsoft.EntityFrameworkCore.EntityState)System.Data.Entity.EntityState.Modified;
-                            db.SaveChanges();
-
-                        }
+                    var clientedb = db.Clientes.Find(clienteId);
+                  
+                        clientedb.TipoDocumento = cliente.tipoDocumento;
+                        clientedb.Documento = 123;
+                        clientedb.PrimerNombre = cliente.primerNombre;
+                        clientedb.SegundoNombre = cliente.segundoNombre;
+                        clientedb.PrimerApellido = cliente.primerApellido;
+                        clientedb.SegundoApellido = cliente.segundoApellido;
+                        clientedb.Celular = cliente.celular;
+                        clientedb.Direccion = cliente.direccion;
+                        clientedb.Correo = cliente.correo;
+                        db.SaveChanges();
+                        oR.Success = 1;
                     }
-                    return null;
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception(ex.Message);
-                }
             }
-            [HttpDelete("[action]")]
-            public ActionResult Delete(int Id)
+            catch (Exception ex)
             {
-                Cliente cliente = new Cliente();
+                oR.Success = 0;
+                oR.Message = ex.Message;
+                Console.WriteLine(ex);
+            }
+            return oR;
+        }
+
+        [HttpDelete("{clienteId}")]
+        public MyResponse Delete(int clienteId)
+        {
+            MyResponse oR = new MyResponse();
+            try
+            {
                 using (CarcenterContext db = new CarcenterContext())
                 {
-                    var clientedb = db.Clientes.Find(Id);
+                    var clientedb = db.Clientes.Find(clienteId);
                     db.Clientes.Remove(clientedb);
                     db.SaveChanges();
+                    oR.Success = 1;
                 }
-
-                return View(cliente);
             }
-
+            catch (Exception ex)
+            {
+                oR.Success = 0;
+                oR.Message = ex.Message;
+                Console.WriteLine(ex);
+            }
+            return oR;
         }
     }
+}

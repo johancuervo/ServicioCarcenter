@@ -1,8 +1,8 @@
-<h1 id="tableLabel">Lista de Clientes</h1>
+<h1 id="tableLabel" *ngIf="cliente">{{cliente.primerNombre}} {{cliente.primerApellido}}</h1>
 
-<p *ngIf="!clientes"><em>Loading...</em></p>
+<p *ngIf="!cliente"><em>Loading...</em></p>
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="clientes">
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="cliente">
   <thead>
     <tr>
       <th>id</th>
@@ -12,14 +12,15 @@
       <th>Segundo Nombre</th>
       <th>Primer Apellido</th>
       <th>Segundo Apellido</th>
-      <th></th>
-      <th></th>
+      <th>Celular</th>
+      <th>Direccion</th>
+      <th>Correo</th>
 
 
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let cliente of clientes">
+    <tr>
       <td>{{ cliente.id }}</td>
       <td>{{ cliente.tipoDocumento }}</td>
       <td>{{ cliente.documento }}</td>
@@ -27,13 +28,10 @@
       <td>{{ cliente.segundoNombre }}</td>
       <td>{{ cliente.primerApellido }}</td>
       <td>{{ cliente.segundoApellido }}</td>
-      <td><button (click)="redirectDetail(cliente.id)">Detalle</button></td>
-      <td><button (click)="redirectToEdit(cliente.id)">Editar</button></td>
-      <td><button (click)="delete(cliente.id)">Borrar</button></td>
+      <td>{{ cliente.celular }}</td>
+      <td>{{ cliente.direccion }}</td>
+      <td>{{ cliente.correo }}</td>
 
     </tr>
-
   </tbody>
-
 </table>
-<button (click)="redirectToCreate()">Crear Cliente</button>

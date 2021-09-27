@@ -1,0 +1,64 @@
+<h1 id="tableLabel">Editar Cliente</h1>
+
+
+<form style="display:flex;flex-direction:column;" [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+
+  <div style="display:flex;justify-content:space-evenly">
+    <label for="tipoDocumento">
+      Tipo de Documento
+    </label>
+    <input id="tipoDocumento" type="text" formControlName="tipoDocumento">
+  </div>
+  <div style="display:flex;justify-content:space-evenly">
+    <label for="documento">
+      Documento
+    </label>
+    <input id="documento" type="text" formControlName="documento">
+  </div>
+
+  <div style="display:flex;justify-content:space-evenly">
+    <label for="primerNombre">
+      Primer Nombre
+    </label>
+    <input id="primerNombre" type="text" formControlName="primerNombre">
+  </div>
+  <div style="display:flex;justify-content:space-evenly">
+    <label for="segundoNombre">
+      Segundo Nombre
+    </label>
+    <input id="segundoNombre" type="text" formControlName="segundoNombre">
+  </div>
+  <div style="display:flex;justify-content:space-evenly">
+    <label for="primerApellido">
+      Primer Apellido
+    </label>
+    <input id="primerApellido" type="text" formControlName="primerApellido">
+  </div>
+  <div style="display:flex;justify-content:space-evenly">
+    <label for="segundoApellido">
+      Segundo Apellido
+    </label>
+    <input id="segundoApellido" type="text" formControlName="segundoApellido">
+  </div>
+  <div style="display:flex;justify-content:space-evenly">
+    <label for="celular">
+      Celular
+    </label>
+    <input id="celular" type="text" formControlName="celular">
+  </div>
+  <div style="display:flex;justify-content:space-evenly">
+    <label for="direccion">
+      Direccion
+    </label>
+    <input id="direccion" type="text" formControlName="direccion">
+  </div>
+  <div style="display:flex;justify-content:space-evenly">
+    <label for="correo">
+      Correo
+    </label>
+    <input id="correo" type="text" formControlName="correo">
+  </div>
+
+  <button class="button" type="submit">Guardar</button>
+
+</form>

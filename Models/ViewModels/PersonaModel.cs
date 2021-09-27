@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,29 +10,20 @@ namespace Carcenter.Models.ViewModels
 {
     public class PersonaModel
     {
-        [Required]
         public int id { get; set; }
-        [Required]
         [StringLength(50)]
         public String tipoDocumento { get; set; }
-        [Required]
         public int documento { get; set; }
-        [Required]
         [StringLength(50)]
         public String primerNombre { get; set; }
         public String segundoNombre { get; set; }
-        [Required]
         [StringLength(50)]
         public String primerApellido { get; set; }
-        [Required]
         [StringLength(50)]
         public String segundoApellido { get; set; }
-        [Required]
         public int celular { get; set; }
-        [Required]
         [StringLength(50)]
         public String direccion { get; set; }
-        [Required]
         [StringLength(50)]
         public String correo { get; set; }
 
