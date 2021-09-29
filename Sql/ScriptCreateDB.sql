@@ -2,7 +2,7 @@ CREATE DATABASE Carcenter;
 USE Carcenter;
 
 CREATE TABLE  Clientes (
-  id INT NOT NULL,
+  id INT NOT NULL IDENTITY(1,1),
   tipoDocumento VARCHAR(50) NOT NULL,
   documento INT NOT NULL,
   primerNombre VARCHAR(50) NOT NULL,
